@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Raleway:wght@700&display=swap");
+
+@import "tailwindcss";
+
+/* Custom Tailwind theme. Ignore the warning. Intellisense isn't being intelligent right now. lol */
+@theme {
+    --font-heading: "Raleway", sans-serif;
+    --font-body: "Lato", sans-serif;
+
+    --color-forest: #41695C;
+    --color-warmstone: #C7BFB3;
+    --color-wheat: #E6DCC6;
+    --color-steelblue: #7491C2;
+    --color-graphite: #2c2c2c;
+}
