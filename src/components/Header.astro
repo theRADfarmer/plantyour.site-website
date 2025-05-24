@@ -1,7 +1,15 @@
-<header class="h-24 content-center text-xl text-white bg-forest shadow-sm shadow-graphite">
-    <div class="flex justify-between py-4 px-2">
-        <div class="font-heading"><a href="/">plantyour.site</a></div>
-        <ul class="flex space-x-4">
+<header class="content-center text-xl text-white bg-forest border-b border-graphite">
+    <nav x-data="{ open: false }">
+        <div class="flex flex-col md:flex-row md:justify-between py-6 px-2 md:px-20 lg:px-36 xl:px-64 2xl:px-96">
+        <div class="flex">
+            <a class="font-heading grow" href="/">plantyour.site</a>
+            <button class="space-y-2 hover:cursor-pointer md:hidden" @click="open = !open" aria-label="Toggle Menu">
+                <div class="h-0.5 w-10 bg-white"></div>
+                <div class="h-0.5 w-10 bg-white"></div>
+                <div class="h-0.5 w-10 bg-white"></div>
+            </button>
+        </div>
+        <ul :class="{'hidden': !open, 'block': open}"  class="hidden text-center space-y-1 pt-2 mt-6 border-t border-graphite md:flex md:space-x-4 md:space-y-0 md:pt-0 md:mt-0 md:border-none">
             <li><a href="/">Home</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/portfolio">Portfolio</a></li>
@@ -9,4 +17,5 @@
             <li><a href="/blog">Blog</a></li>
         </ul>
     </div>
+    </nav>
 </header>
