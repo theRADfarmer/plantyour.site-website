@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Header from '../components/Header.astro';
 
 const { pageTitle } = Astro.props;
 ---
@@ -13,7 +14,9 @@ const { pageTitle } = Astro.props;
 		<title>{pageTitle}</title>
 	</head>
 	<body>
-		<h1 class="text-forest font-heading text-3xl">{pageTitle}</h1>
-        <slot />
+		<Header />
+		<div class="mt-12 text-center">
+        	<slot />
+		</div>
 	</body>
 </html>
