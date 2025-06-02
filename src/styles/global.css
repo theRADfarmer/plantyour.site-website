@@ -42,4 +42,7 @@
     a {
         @apply text-steelblue hover:text-wheat visited:text-forest;
     }
+    header a {
+        @apply text-white hover:text-white visited:text-white;
+    }
 }
