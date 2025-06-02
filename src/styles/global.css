@@ -39,4 +39,7 @@
     h6 {
         @apply text-base;
     }
+    a {
+        @apply text-steelblue hover:text-wheat visited:text-forest;
+    }
 }
