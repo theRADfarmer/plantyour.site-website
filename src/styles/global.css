@@ -22,13 +22,13 @@
         @apply font-heading text-forest;
     }
     h1 {
-        @apply text-4xl mb-1;
+        @apply text-4xl mb-2;
     }
     h2 {
-        @apply text-3xl mb-1;
+        @apply text-3xl mb-1.5;
     }
     h3 {
-        @apply text-2xl mb-0.5;
+        @apply text-2xl mb-1;
     }
     h4 {
         @apply text-xl mb-0.5;
