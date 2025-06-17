@@ -6,6 +6,7 @@
 @theme {
     --font-heading: "Raleway", sans-serif;
     --font-body: "Lato", sans-serif;
+    --text-base: "1.1rem";
 
     --color-forest: #41695C;
     --color-warmstone: #C7BFB3;
@@ -16,10 +17,10 @@
 
 @layer base {
     html {
-        @apply font-body text-graphite;
+        @apply font-body text-graphite text-base;
     }
     h1, h2, h3, h4, h5, h6 {
-        @apply font-heading text-forest;
+        @apply font-heading text-forest mt-4;
     }
     h1 {
         @apply text-4xl mb-2;
@@ -37,12 +38,25 @@
         @apply text-lg mb-0.5;
     }
     h6 {
-        @apply text-base;
+        @apply text-lg;
+    }
+    p {
+        @apply ml-1 md:ml-2;
     }
     a {
-        @apply text-steelblue hover:text-wheat visited:text-forest;
+        @apply text-steelblue hover:text-wheat visited:text-forest underline underline-offset-2;
     }
     header a {
-        @apply text-white hover:text-white visited:text-white;
+        @apply text-white hover:text-white visited:text-white no-underline;
+    }
+}
+
+@layer components {
+    .service-card {
+        @apply bg-wheat text-lg rounded-lg shadow-md flex justify-center items-center text-center box-border w-full h-12 md:w-1/4 md:h-24;
+    }
+
+    .portfolio-card {
+        @apply border border-graphite rounded text-graphite hover:text-graphite visited:text-graphite hover:scale-105 transition-transform duration-300 ease-in-out;
     }
 }
