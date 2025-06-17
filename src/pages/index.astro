@@ -1,4 +1,6 @@
 ---
+import ButtonPrimary from "../components/ButtonPrimary.astro";
+import ButtonSecondary from "../components/ButtonSecondary.astro";
 import BaseLayout from "../layouts/BaseLayout.astro"
 
 const pageTitle = "Plant Your Presence. Grow Your Business.";
@@ -6,7 +8,68 @@ const pageTitle = "Plant Your Presence. Grow Your Business.";
 
 <BaseLayout pageTitle={pageTitle}>
 	<h1>{pageTitle}</h1>
-	<p>
-		Coming soon!
-	</p>
+	<p class="text-lg">Helping local brands grow online.</p>
+	<div class="mt-8">
+		<h2>What do we do?</h2>
+		<p>Who said high-quality websites had to be expensive? Our websites start at only $250 for our core offering.</p>
+		<p>We are dedicated to providing beautiful, responsive, inexpensive, and personalized websites.</p>
+		<p>Our clients range from solo entreprenuers to medium-sized local business.</p>
+	</div>
+	<div class="mt-8 flex flex-col items-center md:flex-row md:space-x-4">
+		<a href="/customize"><ButtonPrimary content="Start Your Site" /></a>
+		<a href="/portfolio"><ButtonSecondary content="See Our Work" /></a>
+	</div>
+	<div class="mt-12">
+		<h2>What do we offer?</h2>
+		<p>This is our core offering included with every site.</p>
+		<ul class="flex flex-col space-y-2 my-4 md:flex-row md:space-y-0 md:space-x-4">
+			<li class="service-card flex md:flex-col"><span>Responsive design</span><p></p><span>(Mobile Friendly)</span></li>
+			<li class="service-card">SEO optimization</li>
+			<li class="service-card">Contact Form</li>
+			<li class="service-card">Google Business Profile</li>
+		</ul>
+		<p>That's not all! We have many more services available.</p>
+		<div class="flex justify-center mt-4 md:justify-start">
+			<a href="/services"><ButtonSecondary content="View All Services"/></a>
+		</div>
+	</div>
+	<div class="mt-12">
+		<h2>Portfolio</h2>
+		<div>
+			<p>Check out some of our recent projects to see the quality and variety of our work.</p>
+			<p>We take pride in delivering custom solutions that meet the unique needs of each client.</p>
+		</div>
+		<div class="flex flex-col mt-4 space-y-4 lg:flex-row lg:justify-evenly lg:space-x-6 lg:space-y-0">
+			<a href="/portfolio">
+				<figure class="portfolio-card inline-block">
+					<img class="aspect-16/9 border-b border-graphite w-[480px]" src="/images/plantyoursite-portfolio-image.png" alt="" width="480" height="360">
+					<figcaption class="text-center py-1">Example Project 1</figcaption>
+				</figure>
+			</a>
+			<a href="/portfolio">
+				<figure class="portfolio-card inline-block">
+					<img class="aspect-16/9 border-b border-graphite w-[480px]" src="/images/plantyoursite-portfolio-image.png" alt="" width="480" height="360">
+					<figcaption class="text-center py-1">Example Project 2</figcaption>
+				</figure>
+			</a>
+			<a href="/portfolio">
+				<figure class="portfolio-card inline-block">
+					<img class="aspect-16/9 border-b border-graphite w-[480px]" src="/images/plantyoursite-portfolio-image.png" alt="" width="480" height="360">
+					<figcaption class="text-center py-1">Example Project 3</figcaption>
+				</figure>
+			</a>
+		</div>
+		<div class="flex justify-center mt-8 md:justify-start">
+			<a href="/portfolio"><ButtonSecondary content="View Full Portfolio"/></a>
+		</div>
+	</div>
+	<div class="mt-12">
+		<h2>Are your ready to grow your business online?</h2>
+		<p>Get started today!</p>
+		<div class="flex justify-center mt-8 md:justify-start">
+			<a href="/customize"><ButtonPrimary content="Start Your Site"/></a>
+		</div>
+		<div class="mt-64"></div>
+	</div>
 </BaseLayout>
+						
