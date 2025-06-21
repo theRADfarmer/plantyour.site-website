@@ -16,6 +16,6 @@ export default defineConfig({
       ]
     }
   },
-
-  integrations: [alpinejs()]
+  integrations: [alpinejs()],
+  site: 'https://plantyour.site',
 });

@@ -1,0 +1,39 @@
+---
+import BlogPostCard from "../../components/BlogPostCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const allPosts = Object.values(import.meta.glob("../posts/*.md", { eager: true }));
+
+    const uniqueTags = [...new Set(
+        allPosts.map((post: any) => post.frontmatter.tags).flat()
+    )]
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post: any) => post.frontmatter.tags?.includes(tag));
+        return {
+            params: { tag },
+            props: { posts: filteredPosts }
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+<BaseLayout pageTitle={tag}>
+    <p>Posts tagged with {tag}</p>
+    <ul class="mt-4 md:grid md:grid-cols-2 md:gap-5">
+        {posts.map((post: any) =>
+            <li>
+                <BlogPostCard
+                    url={post.url}
+                    title={post.frontmatter.title}
+                    description={post.frontmatter.description}
+                    pubDate={post.frontmatter.pubDate}
+                    author={post.frontmatter.author}
+                />
+            </li>
+        )}
+    </ul>
+</BaseLayout>
