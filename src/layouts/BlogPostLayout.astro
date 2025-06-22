@@ -8,14 +8,14 @@ const { frontmatter } = Astro.props;
     <p><a class="italic" href="/blog">Back to blog</a></p>
     <h1>{frontmatter.title}</h1>
     <p><em>{frontmatter.description}</em></p>
-    <p>Published on {frontmatter.pubDate.toString().slice(0,10)}</p>
+    <p>Published on {frontmatter.date.toString().slice(0,10)}</p>
     <p>Written by {frontmatter.author}</p>
     <slot />
     <div>
         <h2 class="mt-4">Tags for this blog post:</h2>
         <div class="flex flex-wrap gap-4">
             {frontmatter.tags.map((tag: any) => 
-                <TagButton tag={tag} />
+                <TagButton tag={tag.name} />
             )}
         </div>
     </div>

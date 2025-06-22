@@ -1,10 +1,13 @@
 ---
 layout: ../../layouts/BlogPostLayout.astro
 title: 'Blog Post Template'
-pubDate: 2025-06-20
+date: 2025-06-20
 description: 'Template Post'
 author: 'Robert DeBold'
-tags: ["website", "development", "test"]
+tags: 
+    - name: website
+    - name: development
+    - name: test
 ---
 
 ## What is this for?

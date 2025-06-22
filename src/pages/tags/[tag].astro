@@ -5,12 +5,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 export async function getStaticPaths() {
     const allPosts = Object.values(import.meta.glob("../posts/*.md", { eager: true }));
 
+    // Collect all tag names (handle string and object tags)
     const uniqueTags = [...new Set(
-        allPosts.map((post: any) => post.frontmatter.tags).flat()
-    )]
+        allPosts.flatMap((post: any) =>
+            (post.frontmatter.tags || []).map((tag: any) => typeof tag === "string" ? tag : tag.name)
+        )
+    )];
 
     return uniqueTags.map((tag) => {
-        const filteredPosts = allPosts.filter((post: any) => post.frontmatter.tags?.includes(tag));
+        const filteredPosts = allPosts.filter((post: any) =>
+            (post.frontmatter.tags || []).some((t: any) => (typeof t === "string" ? t : t.name) === tag)
+        );
         return {
             params: { tag },
             props: { posts: filteredPosts }
@@ -22,15 +27,16 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 <BaseLayout pageTitle={tag}>
-    <p>Posts tagged with {tag}</p>
-    <ul class="mt-4 md:grid md:grid-cols-2 md:gap-5">
+    <h1>Posts tagged with {tag}:</h1>
+    <p class="space-x-4"><a class="italic" href="/tags">Back to all tags</a><a class="italic" href="/blog">Back to blog</a></p>
+    <ul class="mt-8 md:grid md:grid-cols-2 md:gap-5">
         {posts.map((post: any) =>
             <li>
                 <BlogPostCard
                     url={post.url}
                     title={post.frontmatter.title}
                     description={post.frontmatter.description}
-                    pubDate={post.frontmatter.pubDate}
+                    date={post.frontmatter.date}
                     author={post.frontmatter.author}
                 />
             </li>
