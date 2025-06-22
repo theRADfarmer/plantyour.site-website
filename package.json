@@ -3,17 +3,23 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "tinacms dev -c \"astro dev\"",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.8",
+    "@astrojs/rss": "^4.0.12",
     "@tailwindcss/vite": "^4.1.7",
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.14.9",
     "astro": "^5.7.13",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.7",
+    "tinacms": "^2.7.8"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.9.8",
+    "@types/node": "^24.0.3"
   }
 }

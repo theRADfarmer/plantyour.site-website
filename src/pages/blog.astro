@@ -1,12 +1,32 @@
 ---
+import BlogPostCard from "../components/BlogPostCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro"
 
+const allPosts = Object.values(import.meta.glob("./posts/*.md", { eager: true })).sort((a: any, b: any) => {
+	return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
+});
 const pageTitle = "Blog";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
 	<h1>{pageTitle}</h1>
-	<p>
-		Coming soon!
+	<p class="mb-4">
+		Welcome to the blog! Here you can find articles on various topics, including web development, SEO, what I'm learning, and more. Each post is crafted to provide insights and spark discussions.
 	</p>
+	<a class="ml-2 mb-2 text-xl" href="/tags">All Tags</a>
+	<div>
+		<ul class="mt-4 md:grid md:grid-cols-2 md:gap-5">
+			{allPosts.map((post: any) =>
+				<li>
+					<BlogPostCard
+						url={post.url}
+						title={post.frontmatter.title}
+						description={post.frontmatter.description}
+						date={post.frontmatter.date}
+						author={post.frontmatter.author}
+					/>
+				</li>
+			)}
+		</ul>
+	</div>
 </BaseLayout>

@@ -1,0 +1,13 @@
+---
+const { url, title, description, date, author } = Astro.props;
+---
+<div class="bg-wheat text-center rounded-xl border border-graphite m-4 md:m-0 p-2 hover:scale-105 transition-transform duration-300 ease-in-out">
+    <a class="no-underline" href={url}>
+        <h2>{title}</h2>
+        <div class="text-graphite hover:text-graphite visited:text-graphite">
+            <p>{description}</p>
+            <p>Published on {date.toString().slice(0,10)}</p>
+            <p>Written by {author}</p>
+        </div>
+    </a>
+</div>

@@ -1,0 +1,21 @@
+---
+import TagButton from "../../components/TagButton.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
+const tags = [...new Set(
+  allPosts.flatMap((post: any) =>
+    (post.frontmatter.tags || []).map((tag: any) => typeof tag === "string" ? tag : tag.name)
+  )
+)].sort((a, b) => a.localeCompare(b));
+const pageTitle = "Tag Index";
+console.log("Tags:", tags);
+---
+<BaseLayout pageTitle={pageTitle}>
+    <h1>{pageTitle}</h1>
+    <div class="flex flex-wrap gap-4">
+        {tags.map((tag) => 
+            <TagButton tag={tag} />
+        )}
+    </div>
+</BaseLayout>
