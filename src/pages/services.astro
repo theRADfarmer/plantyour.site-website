@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
 import ServiceListItem from "../components/ServiceListItem.astro";
+import ButtonPrimary from "../components/ButtonPrimary.astro";
 import { serviceObjects } from "../scripts/fetchServices";
 
 const pageTitle = "Services";
@@ -70,4 +71,8 @@ const pageTitle = "Services";
 			extendedDescription={serviceObjects.maintenance.extendedDescription}
 		/>
 	</ul>
+	<div class="space-y-2">
+		<p>Do you like what you see? Start your site today.</p>
+		<ButtonPrimary content="Customize" />
+	</div>
 </BaseLayout>
