@@ -56,7 +56,7 @@
 
 @layer components {
     .service-card {
-        @apply bg-wheat text-lg rounded-lg shadow-md flex justify-center items-center text-center box-border w-full h-12 md:w-1/3 md:h-24;
+        @apply border border-graphite text-lg rounded-lg flex justify-center items-center text-center box-border w-full h-12 md:w-1/3 md:h-24;
     }
 
     .portfolio-card {
