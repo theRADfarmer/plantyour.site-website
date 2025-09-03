@@ -1,12 +1,73 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
+import ServiceListItem from "../components/ServiceListItem.astro";
+import { serviceObjects } from "../scripts/fetchServices";
 
 const pageTitle = "Services";
 ---
 
+
 <BaseLayout pageTitle={pageTitle}>
-	<h1>{pageTitle}</h1>
-	<p>
-		Coming soon!
-	</p>
+	<div class="mb-4">
+		<h1>{pageTitle}</h1>
+		<p>Here you will find the details of all the services we offer.</p>
+	</div>
+	<ul>
+		<ServiceListItem 
+			id={serviceObjects.base.id}
+			item={serviceObjects.base.item}
+			description={serviceObjects.base.description}
+			price={serviceObjects.base.price}
+			priceType={serviceObjects.base.priceType}
+			extendedDescription={serviceObjects.base.extendedDescription}
+		/>
+		<ServiceListItem
+			id={serviceObjects.extraPages.id}
+			item={serviceObjects.extraPages.item}
+			description={serviceObjects.extraPages.description}
+			price={serviceObjects.extraPages.price}
+			priceType={serviceObjects.extraPages.priceType}
+			extendedDescription={serviceObjects.extraPages.extendedDescription}
+		/>
+		<ServiceListItem
+			id={serviceObjects.cms.id}
+			item={serviceObjects.cms.item}
+			description={serviceObjects.cms.description}
+			price={serviceObjects.cms.price}
+			priceType={serviceObjects.cms.priceType}
+			extendedDescription={serviceObjects.cms.extendedDescription}
+		/>
+		<ServiceListItem
+			id={serviceObjects.extraSEO.id}
+			item={serviceObjects.extraSEO.item}
+			description={serviceObjects.extraSEO.description}
+			price={serviceObjects.extraSEO.price}
+			priceType={serviceObjects.extraSEO.priceType}
+			extendedDescription={serviceObjects.extraSEO.extendedDescription}
+		/>
+		<ServiceListItem
+			id={serviceObjects.ecommerce.id}
+			item={serviceObjects.ecommerce.item}
+			description={serviceObjects.ecommerce.description}
+			price={serviceObjects.ecommerce.price}
+			priceType={serviceObjects.ecommerce.priceType}
+			extendedDescription={serviceObjects.ecommerce.extendedDescription}
+		/>
+		<ServiceListItem
+			id={serviceObjects.hosting.id}
+			item={serviceObjects.hosting.item}
+			description={serviceObjects.hosting.description}
+			price={serviceObjects.hosting.price}
+			priceType={serviceObjects.hosting.priceType}
+			extendedDescription={serviceObjects.hosting.extendedDescription}
+		/>
+		<ServiceListItem
+			id={serviceObjects.maintenance.id}
+			item={serviceObjects.maintenance.item}
+			description={serviceObjects.maintenance.description}
+			price={serviceObjects.maintenance.price}
+			priceType={serviceObjects.maintenance.priceType}
+			extendedDescription={serviceObjects.maintenance.extendedDescription}
+		/>
+	</ul>
 </BaseLayout>

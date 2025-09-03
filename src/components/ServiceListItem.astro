@@ -1,0 +1,10 @@
+---
+const { id, item, description, price, priceType, extendedDescription } = Astro.props;
+---
+
+<li id={id} class="border border-graphite rounded p-4 mb-4">
+  <h2 class="text-2xl mt-0">{item}</h2>
+  <p>{description}</p>
+  <p>{extendedDescription}</p>
+  <p class="ml-2 mt-1 italic">- {priceType == "scope-based" ? `Starting at $${price}` : `$${price} (${priceType})`}</p>
+</li>
