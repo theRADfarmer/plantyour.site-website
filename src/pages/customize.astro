@@ -1,11 +1,173 @@
 ---
+import ButtonPrimary from "../components/ButtonPrimary.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceObjects } from "../scripts/fetchServices.ts";
 
 const pageTitle = "Customize Your Site";
 ---
 <BaseLayout pageTitle={pageTitle}>
     <h1>{pageTitle}</h1>
-    <div>
-        <p>This feature is currently not available at the moment. You can check out our <a href="/contact">contact</a> page to get in touch if you would like me to work with you.</p>
+    <p class="text-lg">Select your options and see the price update in real-time.</p>
+    <div 
+        x-data=`{
+            base: ${serviceObjects.base.price},
+            extraPages: 0,
+            cms: 0,
+            extraSEO: false,
+            ecommerce: false,
+            hosting: false,
+            maintenance: false,
+            get price() {
+                return this.base + (this.extraPages * ${serviceObjects.extraPages.price}) + (this.cms * ${serviceObjects.cms.price}) + (this.extraSEO ? ${serviceObjects.extraSEO.price} : 0) + (this.ecommerce ? ${serviceObjects.ecommerce.price} : 0);
+            },
+            get monthlyPrice() {
+                return (this.hosting ? ${serviceObjects.hosting.price} : 0) + (this.maintenance ? ${serviceObjects.maintenance.price} : 0);
+            }
+        }`
+    >
+        <form name="customize-site" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+            <input type="hidden" name="form-name" value="customize-site">
+            <input type="hidden" name="total-price" x-bind:value="price">
+            <input type="hidden" name="monthly-price" x-bind:value="monthlyPrice">
+            <div>
+                <h2>Base Offering:</h2>
+                <ul class="ml-1 md:ml-2">
+                    <li>Three pages included</li>
+                    <li>Responsive design</li>
+                    <li>SEO optimization</li>
+                    <li>Contact Form</li>
+                </ul>
+                <p>${serviceObjects.base.price}</p>
+            </div>
+
+            <div class="flex flex-col space-y-2 mt-4">
+                <h2>Additional Services:</h2>
+                <fieldset>
+                    <label for="extra-pages">
+                        {serviceObjects.extraPages.item} (+${serviceObjects.extraPages.price} each):
+                        <input 
+                            type="number" 
+                            name="extra-pages" 
+                            id="extra-pages" 
+                            min="0" 
+                            max="10" 
+                            value="0"
+                            x-model="extraPages"
+                            class="border border-graphite rounded px-1 py-0.5 ml-1"
+                        />
+                        <a class="ml-2" href="services/#extra-pages" target="_blank">More info</a>
+                    </label>
+                    <p class="mb-2">{serviceObjects.extraPages.description}</p>
+                    <div class="flex flex-col">
+                        <label class="space-y-1" for="pages-list">
+                            <p class="ml-0">
+                                List of Additional Pages:
+                            </p>
+                            <textarea 
+                                name="pages-list" 
+                                id="pages-list"
+                                class="border border-graphite rounded px-1 py-0.5 w-full"
+                            ></textarea>
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <label for="cms">
+                        {serviceObjects.cms.item} (+${serviceObjects.cms.price}):
+                        <input
+                            type="number"
+                            name="cms"
+                            id="cms"
+                            min="0"
+                            max="10"
+                            value="0"
+                            x-model="cms"
+                            class="border border-graphite rounded px-1 py-0.5 ml-1"
+                        />
+                        <a class="ml-2" href="services/#cms" target="_blank">More info</a>
+                    </label>
+                    <p class="mb-2">{serviceObjects.cms.description}</p>
+                    <div class="flex flex-col">
+                        <label class="space-y-1" for="content-collection-list">
+                            <p class="ml-0">
+                                List of Content Collections:
+                            </p>
+                            <textarea 
+                                name="content-collection-list" 
+                                id="content-collection-list"
+                                class="border border-graphite rounded px-1 py-0.5 w-full"
+                            ></textarea>
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <label for="ecommerce">
+                        {serviceObjects.ecommerce.item} (+${serviceObjects.ecommerce.price}):
+                        <input
+                            type="checkbox"
+                            name="ecommerce" 
+                            id="ecommerce" 
+                            x-model="ecommerce"
+                            @click="{ ecommerce = !ecommerce }"
+                            class="ml-2"
+                        />
+                    </label>
+                    <a class="ml-2" href="services/#ecommerce" target="_blank">More info</a>
+                    <p class="my-2">{serviceObjects.ecommerce.description}</p>
+                </fieldset>
+                <fieldset class="flex flex-col">
+                    <label class="space-y-1" for="notes">
+                        <p class="ml-0">
+                            Additional Notes and Styling:
+                        </p>
+                        <textarea 
+                            name="notes" 
+                            id="notes"
+                            class="border border-graphite rounded px-1 py-0.5 w-full"
+                        ></textarea>
+                    </label>
+                </fieldset>
+            </div>
+            <div class="flex flex-col space-y-2 mt-4">
+                <h2>Ongoing Monthly Services:</h2>
+                <fieldset>
+                    <label for="hosting">
+                        {serviceObjects.hosting.item} (+${serviceObjects.hosting.price}/month):
+                        <input
+                            type="checkbox"
+                            name="hosting" 
+                            id="hosting" 
+                            x-model="hosting"
+                            @click="{ hosting = !hosting }"
+                            class="ml-2"
+                        />
+                    </label>
+                    <a class="ml-2" href="services/#hosting" target="_blank">More info</a>
+                    <p class="my-2">{serviceObjects.hosting.description}</p>
+                </fieldset>
+                <fieldset>
+                    <label for="maintenance">
+                        {serviceObjects.maintenance.item} (+${serviceObjects.maintenance.price}/month):
+                        <input
+                            type="checkbox"
+                            name="maintenance" 
+                            id="maintenance" 
+                            x-model="maintenance"
+                            @click="{ maintenance = !maintenance }"
+                            class="ml-2"
+                        />
+                    </label>
+                    <a class="ml-2" href="services/#maintenance" target="_blank">More info</a>
+                    <p class="mt-2">{serviceObjects.maintenance.description}</p>
+                </fieldset>
+            </div>
+            <hr class="mt-4 mb-2">
+            <div class="flex flex-col gap-y-1.5 md:flex-row md:justify-between md:items-center mb-8">
+                <p class="text-3xl font-heading text-forest">Total Price: $<span x-text="price"></span></p>
+                <p class="text-3xl font-heading text-forest">Monthly Price: $<span x-text="monthlyPrice"></span></p>
+                <div data-netlify-recaptcha="true" class="mb-4"></div>
+                <ButtonPrimary type="submit" content="Submit" />
+            </div>
+        </form>
     </div>
 </BaseLayout>
