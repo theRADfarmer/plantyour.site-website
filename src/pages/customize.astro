@@ -27,8 +27,41 @@ const pageTitle = "Customize Your Site";
     >
         <form name="customize-site" method="POST" data-netlify="true" data-netlify-recaptcha="true">
             <input type="hidden" name="form-name" value="customize-site">
-            <input type="hidden" name="total-price" x-bind:value="price">
-            <input type="hidden" name="monthly-price" x-bind:value="monthlyPrice">
+            <div class="mb-6">
+                <h2>Contact Info</h2>
+                <fieldset class="flex flex-col space-y-2">
+                    <label class="space-y-1" for="name">
+                        Name:
+                        <input 
+                            type="text" 
+                            name="name" 
+                            id="name" 
+                            required
+                            class="border border-graphite rounded px-1 py-0.5 w-full"
+                        />
+                    </label>
+                    <label class="space-y-1" for="business-name">
+                        Business Name:
+                        <input 
+                            type="text" 
+                            name="business-name" 
+                            id="business-name" 
+                            required
+                            class="border border-graphite rounded px-1 py-0.5 w-full"
+                        />
+                    </label>
+                    <label class="space-y-1" for="email">
+                        Email:
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            required
+                            class="border border-graphite rounded px-1 py-0.5 w-full"
+                        />
+                    </label>
+                </fieldset>
+            </div>
             <div>
                 <h2>Base Offering:</h2>
                 <ul class="ml-1 md:ml-2">
@@ -108,7 +141,7 @@ const pageTitle = "Customize Your Site";
                             name="ecommerce" 
                             id="ecommerce" 
                             x-model="ecommerce"
-                            @click="{ ecommerce = !ecommerce }"
+                            @click="ecommerce = !ecommerce"
                             class="ml-2"
                         />
                     </label>
@@ -138,7 +171,7 @@ const pageTitle = "Customize Your Site";
                             name="hosting" 
                             id="hosting" 
                             x-model="hosting"
-                            @click="{ hosting = !hosting }"
+                            @click="hosting = !hosting"
                             class="ml-2"
                         />
                     </label>
@@ -153,7 +186,7 @@ const pageTitle = "Customize Your Site";
                             name="maintenance" 
                             id="maintenance" 
                             x-model="maintenance"
-                            @click="{ maintenance = !maintenance }"
+                            @click="maintenance = !maintenance"
                             class="ml-2"
                         />
                     </label>
@@ -161,48 +194,15 @@ const pageTitle = "Customize Your Site";
                     <p class="mt-2">{serviceObjects.maintenance.description}</p>
                 </fieldset>
             </div>
-            <div class="mb-6">
-                <h2>Contact Info</h2>
-                <fieldset class="flex flex-col space-y-2">
-                    <label class="space-y-1" for="name">
-                        Name:
-                        <input 
-                            type="text" 
-                            name="name" 
-                            id="name" 
-                            required
-                            class="border border-graphite rounded px-1 py-0.5 w-full"
-                        />
-                    </label>
-                    <label class="space-y-1" for="business-name">
-                        Business Name:
-                        <input 
-                            type="text" 
-                            name="business-name" 
-                            id="business-name" 
-                            required
-                            class="border border-graphite rounded px-1 py-0.5 w-full"
-                        />
-                    </label>
-                    <label class="space-y-1" for="email">
-                        Email:
-                        <input 
-                            type="email" 
-                            name="email" 
-                            id="email" 
-                            required
-                            class="border border-graphite rounded px-1 py-0.5 w-full"
-                        />
-                    </label>
-                </fieldset>
-            </div>
-            <hr class="mb-2">
+            <hr class="mt-4 mb-2">
             <div class="flex flex-col gap-y-1.5 md:flex-row md:justify-between md:items-center mb-8">
                 <p class="text-3xl font-heading text-forest">Total Price: $<span x-text="price"></span></p>
                 <p class="text-3xl font-heading text-forest">Monthly Price: $<span x-text="monthlyPrice"></span></p>
                 <div data-netlify-recaptcha="true" class="mb-4"></div>
                 <ButtonPrimary type="submit" content="Submit" />
             </div>
+            <input type="hidden" name="total-price" x-bind:value="price">
+            <input type="hidden" name="monthly-price" x-bind:value="monthlyPrice">
         </form>
     </div>
 </BaseLayout>
